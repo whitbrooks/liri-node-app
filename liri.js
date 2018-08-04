@@ -5,17 +5,27 @@ require("dotenv").config();
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
+var command = process.argv[2];
+
+
 /* Make it so liri.js can take in one of the following commands:
 
 * `my-tweets`
-
 * `spotify-this-song`
-
 * `movie-this`
-
 * `do-what-it-says`
 ?????
 */
+
+/* if(command == "my-tweets") {
+    myTweets();
+} 
+*/
+
+if(command == "movie-this") {
+    movieThis();
+}
+
 
 function myTweets() {
 // This will show your last 20 tweets and when they were created at in your terminal/bash window.
@@ -25,13 +35,9 @@ function spotifyThisSong(song_name) {
 /*This will show the following information about the song in your terminal/bash window
      
 * Artist(s)
-
 * The song's name
-
 * A preview link of the song from Spotify
-
 * The album that the song is from
-
 * If no song is provided then your program will default to "The Sign" by Ace of Base.
 */
 }

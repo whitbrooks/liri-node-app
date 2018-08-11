@@ -19,6 +19,9 @@
   "homepage": "https://github.com/whitbrooks/liri-node-app#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
-    "request": "^2.87.0"
+    "materialize-social": "^1.0.3",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.87.0",
+    "twitter": "^1.7.1"
   }
 }

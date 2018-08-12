@@ -13,15 +13,19 @@ var keys = require("./keys.js");
 // Get command from command line and run appropriate function
 var command = process.argv[2];
 
-if(command === "my-tweets") {
-    myTweets();
-} else if(command === "spotify-this-song") {
-    spotifyThisSong();
-} else if(command === "movie-this") {
-    movieThis();
-} else if(command === "do-what-it-says") {
-    doWhatItSays();
+function readCommand() {
+    if(command === "my-tweets") {
+        myTweets();
+    } else if(command === "spotify-this-song") {
+        spotifyThisSong();
+    } else if(command === "movie-this") {
+        movieThis();
+    } else if(command === "do-what-it-says") {
+        doWhatItSays();
+    }
 }
+
+readCommand();
 
 // Get tweets
 function myTweets() {
@@ -89,12 +93,19 @@ function movieThis () {
 } 
 
 
-// function doWhatItSays () {
-// /*  * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
-     
-//      * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
-     
-//      * Feel free to change the text in that document to test out the feature for other commands.
-// */
-// }
+function doWhatItSays () {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        } else {
+            var randomArray = data.split(",");
+            command = randomArray[0];
+            song_name = randomArray[1];
+            readCommand();
+
+        } 
+    });
+}
 

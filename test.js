@@ -1,14 +1,23 @@
-var Spotify = require('node-spotify-api');
+var Twitter = require('twitter');
  
-var spotify = new Spotify({
-  id: "b1ad0d4c85f546a9b409c42ecd7ebbfd",
-  secret: "ab665648cce5429790d34b0552d6cc55"
+var client = new Twitter({
+  consumer_key: '7TML35885HRwMbbcCSmQzWmac',
+  consumer_secret: 'tNcM2XO9DkALiMRRWL7DThw2pNaFFl9MSBBbA7iSbZXpSuzskF',
+  access_token_key: '1027796573986545664-weguGQbFNrCgGmoGvEueBU3qR50x3K',
+  access_token_secret: 'FYnluBgfQcuBnzI0wJfmsfVQWeAVHgwkWNu5UYnT1gois'
 });
  
-spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    }
-   
-  console.log(data.album); 
+function myTweets(name) {
+  // This will show your last 20 tweets and when they were created at in your terminal/bash window.
+
+var params = {screen_name: name};
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+      for(var i = 0; i< 20; i++){
+      console.log("@iluvaripants: " + tweets[i].text);
+      }
+  }
   });
+}
+
+myTweets();

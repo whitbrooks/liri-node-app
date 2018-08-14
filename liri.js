@@ -15,7 +15,7 @@ var command = process.argv[2];
 var song_name = process.argv[3];
 var movie_name = process.argv[3];
 
-
+// Read command and run appropriate function
 function readCommand() {
     if(command === "my-tweets") {
         myTweets();
@@ -78,7 +78,6 @@ function movieThis () {
 
     request("http://www.omdbapi.com/?t=" + movie_name + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
 
-        // If the request is successful (i.e. if the response status code is 200)
         if (!error && response.statusCode === 200) {
     
         console.log(
@@ -94,11 +93,10 @@ function movieThis () {
     }); 
 } 
 
-
+// Read command and arguments from text file
 function doWhatItSays () {
     fs.readFile("random.txt", "utf8", function(error, data) {
 
-        // If the code experiences any errors it will log the error to the console.
         if (error) {
           return console.log(error);
         } else {

@@ -10,8 +10,11 @@ var fs = require('fs'); //reads and writes files
 var keys = require("./keys.js");
 
 
-// Get command from command line and run appropriate function
+// Get command and arguments from command line
 var command = process.argv[2];
+var song_name = process.argv[3];
+var movie_name = process.argv[3];
+
 
 function readCommand() {
     if(command === "my-tweets") {
@@ -29,14 +32,16 @@ readCommand();
 
 // Get tweets
 function myTweets() {
+    
     var client = new Twitter(keys.twitter);
     var params = {screen_name: "iluvaripants"};
+    
     client.get('statuses/user_timeline', params, function(error, tweets) {
-    if (!error) {
-        for(var i = 0; i< 20; i++){
-        console.log("@iluvaripants: " + tweets[i].text);
+        if (!error) {
+            for(var i = 0; i< 20; i++){
+            console.log("@iluvaripants: " + tweets[i].text);
+            }
         }
-    }
     });
 }
 
@@ -45,8 +50,7 @@ function myTweets() {
 function spotifyThisSong() {
 
     var spotify = new Spotify(keys.spotify);
-    var song_name = process.argv[3];
-    
+
     if (!song_name) {
         song_name = "All That She Wants";
     }
@@ -67,8 +71,6 @@ function spotifyThisSong() {
 
 // Get movie info
 function movieThis () {
-
-    var movie_name = process.argv[3];
 
     if (!movie_name) {
         movie_name = "Mr. Nobody";
